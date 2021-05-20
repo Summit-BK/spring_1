@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-<a href="#">회원가입</a>
+    <div th:replace="/header :: header"></div>
+    <br>현재 회원목록
+    <table>
+        <tr th:each="memberdto : ${memberDtoList}">
+            <td th:text="${memberdto.name}"></td>
 
-<table>
-    <tr th:each="memberdto : ${memberDtoList}">
-        <td th:text="${memberdto.name}"></td>
+        </tr>
 
-    </tr>
-
-</table>
+    </table>
 </body>
 </html>

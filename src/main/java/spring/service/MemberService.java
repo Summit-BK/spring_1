@@ -8,6 +8,7 @@ import spring.web.dto.MemberDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,8 +36,42 @@ public class MemberService {
         return memberDtoList;
     }
 
+    public MemberDto memberlogin(MemberDto loginDto){
 
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+
+        for(MemberEntity temp : memberEntityList){
+            if(temp.getMemberid().equals(loginDto.getMemberid())&&temp.getPassword().equals(loginDto.getPassword())){
+
+                MemberDto memberDto = MemberDto.builder()
+                        .id(temp.getId())
+                        .memberid(temp.getMemberid())
+                        .name(temp.getName())
+                        .email(temp.getEmail()).build();
+                return memberDto;
+            }
+
+        }
+        return null;
+
+    }
+
+    public MemberDto memberfind(Long id){
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        MemberDto memberDto = MemberDto.builder()
+                .id(memberEntity.getId())
+                .memberid(memberEntity.getMemberid())
+                .name(memberEntity.getName())
+                .password(memberEntity.getPassword())
+                .email(memberEntity.getEmail()).build();
+        return memberDto;
+    }
 }
+
 
 
 
