@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/header.css">
 </head>
 <body>
     <div th:replace="/header :: header"></div>
-    <form method="post" action="/memberlogin">
-        <input type="text" name="memberid">
-        <input type="password" name="password">
-        <button class="btn btn-success" type="submit">확인</button>
-    </form>
+    <div class="container">
+        <form method="post" action="/memberlogin">
+            <table class="table table-hover">
+                <tr>
+                    <td> <input type="text" name="memberid"></td>
+                </tr>
+                <tr>
+                    <td> <input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <button class="btn btn-success" type="submit">확인</button>
+                </tr>
+
+            </table>
+
+
+
+        </form>
+
+
+    </div>
 
 
 </body>

@@ -6,6 +6,7 @@ import spring.domain.MemberEntity;
 import spring.domain.MemberRepository;
 import spring.web.dto.MemberDto;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,6 +71,24 @@ public class MemberService {
                 .email(memberEntity.getEmail()).build();
         return memberDto;
     }
+
+    public int memberdelete(Long id){
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+        MemberEntity memberEntity = optionalMemberEntity.get();
+        memberRepository.delete(memberEntity);
+        return 1;
+
+
+    }
+    @Transactional
+    public int memberupdate(Long id,MemberDto updateDto){
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+        MemberEntity memberEntity = optionalMemberEntity.get();
+        memberEntity.update(updateDto);
+        return 1;
+    }
+
 }
 
 

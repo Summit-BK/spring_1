@@ -60,4 +60,25 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @GetMapping("/memberdelete")
+    public String memberdelete(){
+        MemberDto memberDto = (MemberDto) session.getAttribute("loginuser");
+        Long id = memberDto.getId();
+        int result = memberService.memberdelete(id);
+        if(result == 1){
+            session.invalidate();
+            return "redirect:/";
+        }else{
+            return "redirect:/";
+        }
+
+    }
+    @PostMapping("/memberinfo")
+    public String memberinfo(MemberDto updateDto){
+        MemberDto memberDto = (MemberDto) session.getAttribute("loginuser");
+        Long id = memberDto.getId();
+        memberService.memberupdate(id, updateDto);
+        return "redirect:/memberinfo";
+    }
+
 }

@@ -3,14 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/header.css">
 </head>
 <body>
     <div th:replace="/header :: header"></div>
-    <form>
-        아이디<input type="text" name="memberid">
-        이름<input type="text" name="name">
-        이메일<input type="text" name="email">
+    <div class="container">
+        <form method="post" action="/memberinfo" id="memberinfoform">
+            <table class="table table-hover">
 
+                <tr>
+                    <td>이름</td><td> <input type="text" name="name" th:value="${memberDto.name}"> </td>
+                </tr>
+                <tr>
+                    <td>이메일</td><td>  <input type="text" name="email" th:value="${memberDto.email}"></td>
+                </tr>
+
+            </table>
+
+
+
+
+
+
+        <a th:href="@{/memberdelete}" class="btn btn-outline-success">회원탈퇴</a>
+        <button form="memberinfoform" type="submit" class="btn btn-outline-primary">회원수정</button>
     </form>
+
+    </div>
 </body>
 </html>
